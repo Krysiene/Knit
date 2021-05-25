@@ -114,6 +114,13 @@ function KnitServer.GetService(serviceName)
 end
 
 
+function KnitServer.GetServiceInit(serviceModule)
+	assert(serviceModule:IsA("ModuleScript"), "ServiceModule must be a module; got " .. type(serviceModule))
+	local module = require(serviceModule)
+	return KnitServer.Services[module.Name]
+end
+
+
 function KnitServer.BindRemoteEvent(service, eventName, remoteEvent)
 	assert(service._knit_re[eventName] == nil, "RemoteEvent \"" .. eventName .. "\" already exists")
 	local re = remoteEvent._remote

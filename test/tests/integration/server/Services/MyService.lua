@@ -1,11 +1,16 @@
 local Knit = require(game:GetService("ReplicatedStorage").Knit)
 local Option = require(Knit.Util.Option)
-
+local MyService2 = Knit.GetServiceInit(game:GetService("ServerScriptService").KnitTest.Services.MyService2)
 
 local MyService = Knit.CreateService {
 	Name = "MyService";
 	Client = {};
 }
+
+
+function MyService:GetMessage()
+	return "Hello from MyService (server)"
+end
 
 
 function MyService.Client:GetMessage(_player)
@@ -26,6 +31,7 @@ end
 
 function MyService:KnitStart()
 	print(self.Name .. " started")
+	print(MyService2:GetMessage())
 end
 
 
